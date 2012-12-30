@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class Users < Repository
+class Users < Warehouse::Repository
   def initialize(options = {})
     super
   end
@@ -11,8 +11,8 @@ class User
 end
 
 describe Users do
-  it 'should raise Repository::ModelClassRequiredException if no model_class option was provided' do
-    -> { Users.new }.should raise_error(Repository::ModelClassRequiredException)
+  it 'should raise Warehouse::Exceptions::ModelClassRequired if no model_class option was provided' do
+    -> { Users.new }.should raise_error(Warehouse::Exceptions::ModelClassRequired)
   end
 
   context 'simple fetching and getting objects from memory' do
