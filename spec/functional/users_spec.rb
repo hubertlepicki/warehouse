@@ -32,7 +32,7 @@ describe Users do
       u = User.new.tap { name = 'John' }
       repo.store(u)
       repo.store(u)
-      repo.fetch_all.count.should == 2
+      repo.fetch_all.count.should == 1
     end
   end
 

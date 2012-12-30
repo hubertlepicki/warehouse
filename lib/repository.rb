@@ -1,4 +1,5 @@
 require 'repository/exceptions'
+require 'repository/in_memory_collection'
 
 class Repository
   attr_accessor :collection_source, :model_class, :query_object
@@ -7,7 +8,7 @@ class Repository
     raise ModelClassRequiredException unless options.keys.include?(:model_class)
 
     @collection_source = options[:collection_source] || -> {
-      @in_memory_collection ? @in_memory_collection : @in_memory_collection = []
+      @in_memory_collection ? @in_memory_collection : @in_memory_collection = InMemoryCollection.new
     }
 
     @query_object = options[:query_object] || ->(repo) {
